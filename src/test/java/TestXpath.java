@@ -1,46 +1,55 @@
-import com.codeborne.selenide.SelenideElement;
 import org.junit.Assert;
 import org.junit.Test;
+import steps.createBug;
+import steps.taskBoard;
+import steps.projectStatus;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.codeborne.selenide.Selenide.$x;
-
+import static pageElements.mainPage.*;
+import static pageElements.selenidePage.*;
+import static pageElements.createPage.*;
+import static pageElements.boardPage.*;
 
 public class TestXpath{
-    private final static String baseURL = "https://edujira.ifellow.ru/secure/Dashboard.jspa";
-    private final static String login = "vtihomirova";
-    private final static String password = "Qwerty123";
-    String text = "TestSelenium";
-    String textTema = "CreateBug";
-    String textEnvironment= "Kakoe-to environment";
-    String textOpisanie = "Kakoe-to opisanie";
-    private final SelenideElement quantity = $x("//div[@class='showing']//span");
-    private final SelenideElement status = $x("//span[@class='status-view']//preceding-sibling::span");
-    private final SelenideElement versions = $x("//span[@id='fixVersions-field']");
 
     @Test
-    public void homeWork3(){
-        StartPage startPage = new StartPage(baseURL);
-        startPage.input(login, password);
-        TestProject testProject = new TestProject();
-        testProject.projects();
-        testProject.searchTest();
+    public void kolichestvo() {//добавить в assert с чем сравнить! получение кол-ва задач
+        steps.login.url(baseURL);
+        steps.login.input(login, password);
+        taskBoard.projects();
         String howMany = quantity.getText();
         Pattern pattern = Pattern.compile("\\d+$");
         Matcher matcher = pattern.matcher(howMany);
         matcher.find();
-        TestSelenium testSelenium = new TestSelenium();
-        testSelenium.seleniumSearch(text);
-        String inProgress = status.getText();
-        inProgress.toLowerCase();
+        taskBoard.tasksBoard();
+        String HWTask = allTasks.getText();
+        Pattern patterns = Pattern.compile("\\d+$");
+        Matcher matchers = patterns.matcher(HWTask);
+        matchers.find();
+        String a1 = matchers.group();
+        String a2 = matcher.group();
+        Assert.assertEquals(a1,a2);
+    }
+
+    @Test
+    public void statusAndVersion (){//получение статуса и версии
+        steps.login.url(baseURL);
+        steps.login.input(login, password);
+        projectStatus.seleniumSearch(text);
+        String inProgress = status.getText().toLowerCase();
         String vers = versions.getText();
-        CreateBug createBug = new CreateBug();
-        createBug.clickButton(textTema,textOpisanie,textEnvironment);
-        testSelenium.createDoneTest(textTema);
-        createBug.businessProgress();
         Assert.assertEquals(vers,"Version 2.0");
         Assert.assertEquals(inProgress,"в работе");
-        Assert.assertEquals(matcher.group(),"6487");
+    }
+
+    @Test
+    public void creareBugAndStatus(){
+        steps.login.url(baseURL);
+        steps.login.input(login, password);
+        createBug.clickButton(textTema,textOpisanie,textEnvironment);
+        projectStatus.createDoneTest(textTema);
+        createBug.businessProgress();
     }
 }
