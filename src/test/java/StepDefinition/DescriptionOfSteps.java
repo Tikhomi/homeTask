@@ -11,23 +11,28 @@ public class DescriptionOfSteps {
     private int sum;
 
     @Дано("Пользователь вводит первое число {int}")
-    public void ввод_числа_a(int a) {
+    public int ввод_числа_a(int a) {
         this.numA = a;
+        return numA;
     }
     @Дано("Пользователь вводит второе число {int}")
-    public void ввод_числа_b(int b){
+    public int ввод_числа_b(int b){
         this.numB = b;
+        return numB;
     }
 
     @Когда("Расчет суммы")
-    public void расчет_суммы() {
+    public int расчет_суммы() {
+        int a = ввод_числа_a(23);
+        int b = ввод_числа_b(36);
         sum = numA + numB;
+        return sum;
     }
 
-    @Тогда("Вывод результата сложения {int}")
-    public void вывод_суммы(int summa) {
-        this.sum = summa;
-        System.out.println(sum);
+    @Тогда("Вывод результата сложения")
+    public void вывод_суммы() {
+        sum = расчет_суммы();
+        System.out.println(numA + " + " + numB + " = " + sum);
     }
 
 }
