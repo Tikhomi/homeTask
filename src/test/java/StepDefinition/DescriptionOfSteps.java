@@ -1,5 +1,4 @@
 package StepDefinition;
-
 import io.cucumber.java.ru.Дано;
 import io.cucumber.java.ru.Когда;
 import io.cucumber.java.ru.Тогда;
@@ -23,7 +22,7 @@ public class DescriptionOfSteps {
 
     @Когда("Расчет суммы")
     public int расчет_суммы() {
-        int a = ввод_числа_a(23);
+        int a = ввод_числа_a(104);
         int b = ввод_числа_b(36);
         sum = numA + numB;
         return sum;
