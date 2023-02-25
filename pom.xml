@@ -33,7 +33,12 @@
         <cucumber.6.jvm.version>2.13.6</cucumber.6.jvm.version>
         <allure.version>2.13.2</allure.version>
         <allure-maven.version>2.10.0</allure-maven.version>
+        <groupId>org.json</groupId>
+        <restAssured.version>4.2.0</restAssured.version>
+        <log4jCore.version>2.13.2</log4jCore.version>
         <json.version>20210307</json.version>
+
+
 
         <parallelCount>1</parallelCount>
     </properties>
@@ -87,6 +92,7 @@
             <artifactId>allure-cucumber6-jvm</artifactId>
             <version>${cucumber.6.jvm.version}</version>
         </dependency>
+
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-junit5</artifactId>
