@@ -40,8 +40,10 @@ public class Create {
         jobCheck1 = (new JSONObject(sendingRequest.getBody().asString()).get("job").toString());
         String idCreate =(new JSONObject(sendingRequest.getBody().asString()).get("id").toString());
         String createdAt = (new JSONObject(sendingRequest.getBody().asString()).get("createdAt").toString());
+
         nameCheck2 = (body.get("name").toString());
         jobCheck2 = (body.get("job").toString());
+
         System.out.println("id: " + idCreate);
         System.out.println("createAt: " + createdAt);
 

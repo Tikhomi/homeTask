@@ -31,6 +31,8 @@ public class signInJira {
         session = (new JSONObject(logIn.getBody().asString()).getJSONObject("session"));
         nameSession = session.get("name").toString();
         valueSession = session.get("value").toString();
+
         System.out.println("name: " + nameSession + "\n" + "value: " + valueSession);
     }
 }
+//
