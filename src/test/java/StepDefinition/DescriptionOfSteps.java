@@ -29,9 +29,8 @@ public class DescriptionOfSteps {
     }
 
     @Тогда("Вывод результата сложения")
-    public void вывод_суммы() {
+    public void вывод_результата_сложения() {
         sum = расчет_суммы();
         System.out.println(numA + " + " + numB + " = " + sum);
     }
-
 }

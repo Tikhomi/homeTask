@@ -1,6 +1,5 @@
 #language:ru
 
-
 @TEST
 Функция: Test. Расчёт суммы двух чисел.
     @1Step
