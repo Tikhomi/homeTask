@@ -1,5 +1,6 @@
-package APIsteps;
+package apiSteps;
 
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import org.json.JSONObject;
 
@@ -16,6 +17,7 @@ public class RickAndMorty {
     public static String nameLocationMorty;
     public static String nameLocation;
 
+    @Step("Получаем персоонажа по номеру: {id}")
     public static void getCharacter(String id){
         Response gettingChar = given()
                 .baseUri("https://rickandmortyapi.com/api")
@@ -33,6 +35,7 @@ public class RickAndMorty {
         System.out.println("id Морти Смит: " + charId);
         System.out.println("Раса Морти Смит: " + speciesMorty);
     }
+    @Step("Получение последнего эпизода")
     public static void getEpisode(){
         Response gettingLastEpisode = given()
                 .baseUri("https://rickandmortyapi.com/api")
@@ -47,6 +50,7 @@ public class RickAndMorty {
 
         System.out.println("Последний эпизод в котором учавствовал Морти Смит: " + lastEpisode);
     }
+    @Step("Получение id последнего персонажа {lastEpisode} эпизода")
     public static void getIdPerson(){
         Response gettingIdLastPerson = given()
                 .baseUri("https://rickandmortyapi.com/api")
@@ -61,6 +65,7 @@ public class RickAndMorty {
 
         System.out.println("id последнего персонажа, последнего эпизода: " + idLastCharacter);
     }
+    @Step("Получение локации персонажа с id {idLastCharacter}")
     public static void getLocationPerson(){
         Response gettingLocationPerson = given()
                 .baseUri("https://rickandmortyapi.com/api")
@@ -76,6 +81,4 @@ public class RickAndMorty {
         System.out.println("Место нахождение последнего персонажа: " + nameLocation);
         System.out.println("Раса персонажа: " + speciesLast);
     }
-
-
 }

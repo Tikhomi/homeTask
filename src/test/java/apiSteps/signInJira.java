@@ -1,5 +1,6 @@
-package APIsteps;
+package apiSteps;
 
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import org.json.JSONObject;
 
@@ -15,6 +16,8 @@ public class signInJira {
     public static JSONObject session;
     public static String nameSession;
     public static String valueSession;
+
+    @Step("Авторизация на Jira")
     public static void homePage() throws IOException {
         json = new JSONObject(new String(Files.readAllBytes(Paths.get("src/test/resources/signIn.json"))));
         jsonStr = json.toString();

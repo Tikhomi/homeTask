@@ -1,10 +1,16 @@
 package WebHooks;
-
 import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.qameta.allure.selenide.AllureSelenide;
+import io.restassured.RestAssured;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
 public class WebHooks {
+    @BeforeAll
+    static void beforeAll() {
+        RestAssured.filters(new AllureRestAssured());
+    }
     @BeforeEach
     public void allureSubThreadParallel() {
         String listenerName = "AllureSelenide";
@@ -14,5 +20,6 @@ public class WebHooks {
                     new AllureSelenide().
                             screenshots(true).
                             savePageSource(false));
+
     }
 }

@@ -1,5 +1,6 @@
-package APIsteps;
+package apiSteps;
 
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import org.json.JSONObject;
 
@@ -17,7 +18,7 @@ public class Create {
     public static String jobCheck2;
     public static JSONObject body;
 
-
+    @Step("Заполнение json")
     public static void fillingBody() throws IOException {
         body = new JSONObject(new String(Files.readAllBytes(Paths.get("src/test/resources/create.json"))));
         body.put("name", "Tomato");
@@ -25,6 +26,7 @@ public class Create {
         Body1 = body.toString();
     }
 
+    @Step("Отправка на регресс")
     public static void sendRequest() {
         Response sendingRequest = given()
                 .header("Content-type", "application/json")

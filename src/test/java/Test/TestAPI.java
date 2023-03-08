@@ -1,15 +1,23 @@
+package Test;
+
+import WebHooks.WebHooks;
+import io.qameta.allure.Epic;
 import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
 
 import java.io.IOException;
 
-import static APIsteps.Create.*;
-import static APIsteps.RickAndMorty.*;
-import static APIsteps.signInJira.*;
+import static apiSteps.Create.*;
+import static apiSteps.RickAndMorty.*;
+import static apiSteps.signInJira.*;
 
-public class TestAPI {
+@Epic("API Тесты.")
+public class TestAPI extends WebHooks {
+
+    @DisplayName("Тесты Рик и морти")
     @Test
-    public void test1 () {
+    public void task1 () {
         getCharacter("2");
         getEpisode();
         getIdPerson();
@@ -21,7 +29,7 @@ public class TestAPI {
             System.out.println("Локации не совпадают!");
         }
     }
-
+    @DisplayName("Создание пользователя")
     @Test
     public void task2 () throws IOException{
         fillingBody();
@@ -29,7 +37,7 @@ public class TestAPI {
         Assert.assertEquals("Значение ключа name не совпадают!", nameCheck1, nameCheck2);
         Assert.assertEquals("Значение ключа job не совпадают!", jobCheck1, jobCheck2);
     }
-
+    @DisplayName("Авторизация на jira")
     @Test
     public void task3 () throws IOException{
         homePage();
